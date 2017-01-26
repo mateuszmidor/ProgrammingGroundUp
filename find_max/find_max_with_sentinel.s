@@ -1,25 +1,27 @@
 .section .data
-data_items:
-    .long 3,67,34,222,45,75,54,34,44,33,22,11,66,0 # 0 is the list sentinel
+data_items_begin:
+    .long 3,67,34,222,45,75,54,34,44,33,22,11,66,0,250
+data_items_end: # this is our list end sentinel
+
 
 .section .text
 
 # eax   Current data item
 # ebx   Maximum data item found
-# edi   Current index of data item being examined
+# edi   Current data item ptr
 
 .global _start
 _start:
-    movl $0, %edi                   # index = 0
-    movl data_items(,%edi, 4), %eax # current = data_items[0]
+    movl $data_items_begin, %edi    # ptr = &data_items_begin[0]
+    movl (%edi), %eax               # current = *ptr
     movl %eax, %ebx                 # max = current
 
 start_loop:
-    cmpl $0, %eax                   # if (current == 0) break
-    je loop_exit
+    cmpl $data_items_end, %edi      # if (ptr >= sentinel) break
+    jge loop_exit
 
-    incl %edi                       # index++
-    movl data_items(,%edi, 4), %eax # current = data_items[index]
+    addl $4, %edi                   # ptr += 4 bytes
+    movl (%edi), %eax               # current = *ptr
     cmpl %ebx, %eax                 # if (current <= max) continue
     jle start_loop
 
