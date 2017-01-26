@@ -1,4 +1,6 @@
 cmake_minimum_required (VERSION 2.8)
+
+# "ASM" below indicates to CMAKE that this is assembly language based project (.s source files)
 project (ProgrammingGroundUp ASM)
 
 set(PROJECT_MAJOR_VERSION 0)
@@ -11,3 +13,4 @@ set(PROJECT_VERSION ${PROJECT_MAJOR_VERSION}.${PROJECT_MINOR_VERSION}.${PROJECT_
 set(CMAKE_EXE_LINKER_FLAGS " -nostartfiles -nostdlib") 
 
 add_subdirectory(exit)
+add_subdirectory(find_max)
