@@ -12,3 +12,4 @@ set(PROJECT_VERSION ${PROJECT_MAJOR_VERSION}.${PROJECT_MINOR_VERSION}.${PROJECT_
 add_subdirectory(exit)
 add_subdirectory(find_max)
 add_subdirectory(puts)
+add_subdirectory(func_power)
